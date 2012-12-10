@@ -24,7 +24,7 @@ describe OrdersController do
   # Order. As you add validations to Order, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { :customer_id => "1", :phone_id => @current_phone.id, :quantity => "2" }
+    { :customer_id => "1", :phone_id => @phone.oreders.id, :quantity => "2" }
   end
 
   # This should return the minimal set of values that should be in the session

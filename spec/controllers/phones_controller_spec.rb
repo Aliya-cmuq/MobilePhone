@@ -24,7 +24,7 @@ describe PhonesController do
   # Phone. As you add validations to Phone, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { :brand => "Blackberry", :name => "Bold", :description => "9340", :price => "199.00", :quantityInStock => "2" }
+    {:brand => "Blackberry", :name => "Bold", :description => "9340", :price => "199.00", :quantityInStock => "2" }
   end
 
   # This should return the minimal set of values that should be in the session
