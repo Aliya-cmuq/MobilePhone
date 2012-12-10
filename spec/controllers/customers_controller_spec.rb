@@ -56,10 +56,10 @@ describe CustomersController do
       assigns(:customer).should be_a_new(Customer)
     end
 	
-	it "should have the right title" do
-	  get 'new'
-	  response.should have_selector("title", :content => "sign up")
-	end
+#	it "should have the right title" do
+#	  get 'new'
+#	  response.should have_selector("title", :content => "sign up")
+#	end
   end
 
   describe "GET edit" do
