@@ -24,7 +24,7 @@ describe CustomersController do
   # Customer. As you add validations to Customer, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:firstName => "Aliya", :lastName => "Hashim", :phone => "97444667532", :email => "aliya@aliya.com", :address => "PO Box 12345"}
+    {:firstName => "Aliya", :lastName => "Hashim", :phone => "97444667532", :email => "aliya@aliya.com", :address => "PO Box 12345", :password => "123456"}
   end
 
   # This should return the minimal set of values that should be in the session

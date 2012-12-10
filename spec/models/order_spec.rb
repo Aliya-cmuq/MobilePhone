@@ -19,10 +19,7 @@ describe Order do
         should belong_to(:customer)
       end
     end
-<<<<<<< HEAD
-=======
 
->>>>>>> PhoneIDinOrderForm
     describe "Accept numbers only for customer_id, phone_id, quantity" do
       it {should validate_numericality_of(:customer_id).only_integer}
       it {should validate_numericality_of(:customer_id)}
@@ -71,7 +68,6 @@ describe Order do
       end
     end
 
-<<<<<<< HEAD
      describe "show only the iphones that are available" do
        it "should return the available phone IDs" do
          Order.exsitedPhones.map{|v| v.name}.should == ["1"]
@@ -81,7 +77,6 @@ describe Order do
           
         end
      end
-=======
    #   describe "show only the iphones that are available" do
    #     it "should return the available phone IDs" do
    #       Order.exsitedPhones.map{|v| v.name}.should == ["1"]
@@ -92,5 +87,4 @@ describe Order do
    #      end
    #   end
 
->>>>>>> PhoneIDinOrderForm
 end
