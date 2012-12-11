@@ -20,22 +20,29 @@ require 'spec_helper'
 
 describe OrdersController do
 
+  
   # This should return the minimal set of attributes required to create a valid
   # Order. As you add validations to Order, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { :customer_id => "1", :phone_id => "1", :quantity => "2" }
+    @c = Customer.first || Customer.create!(:firstName => "Aliya", :lastName => "Hashim", :phone => "97444667532", :email => "aliya@aliya.com", :address => "PO Box 12345", :password => "123456")
+    @p = Phone.first || Phone.create!(:brand => "Blackberry", :name => "Bold", :description => "9340", :price => "199.00", :quantityInStock => "2")
+    Rails.logger.debug "The Customer id is #{@c.id}.  The phone id is: #{@p.id}"
+    { :customer_id => @c.id, :phone_id => @p.id, :quantity => 2 }
   end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # OrdersController. Be sure to keep this updated too.
   def valid_session
-    {}
+    @c = Customer.first || Customer.create!(:firstName => "Aliya", :lastName => "Hashim", :phone => "97444667532", :email => "aliya@aliya.com", :address => "PO Box 12345", :password => "123456")
+    @p = Phone.first || Phone.create!(:brand => "Blackberry", :name => "Bold", :description => "9340", :price => "199.00", :quantityInStock => "2")
+    {[@c.id, @c.password_salt] => session[:remember_token]}
   end
 
   describe "GET index" do
     it "assigns all orders as @orders" do
+      Rails.logger.debug "The attributes are: #{valid_attributes}"
       order = Order.create! valid_attributes
       get :index, {}, valid_session
       assigns(:orders).should eq([order])
@@ -52,7 +59,7 @@ describe OrdersController do
 
   describe "GET new" do
     it "assigns a new order as @order" do
-      get :new, {}, valid_session
+      get :new, {:phone => Phone.first}, valid_session
       assigns(:order).should be_a_new(Order)
     end
   end

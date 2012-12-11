@@ -15,21 +15,27 @@
   </tr>
 
 <% @phones.each do |phone| %>
-  <tr>
-    <td><%= image_tag phone.photo_url %></td>
+  <tr>	
+    <td> <%= image_tag phone.photo_url %></td>
     <td><%= phone.id %></td>
     <td><%= phone.brand %></td>
     <td><%= phone.name %></td>
     <td><%= phone.description %></td>
     <td><%= phone.price %></td>
     <td><%= phone.quantityInStock %></td>
-    <td><%= link_to 'Buy', :controller => :orders, :action => :new, :id => phone.id %></td>
+   
     <% if signed_in? %>
+		<% if @current_customer.email == "aliya@aliya.com"%>
+	    <td><%= link_to 'Show', phone %></td>
+	 <td><%= link_to 'Edit', edit_phone_path(phone) %></td>
+	    <td><%= link_to 'Destroy', phone, confirm: 'Are you sure?', method: :delete %></td>
+	
+			<% else %>
 		<td><%= link_to 'Buy', :controller => :orders, :action => :new, :id => phone.id %></td>
     <td><%= link_to 'Show', phone %></td>
-		
+		<% end %>
 	<% else %>
-	
+	<td><%= link_to 'Buy', :controller => :orders, :action => sign_up_path %></td>
     <td><%= link_to 'Show', phone %></td>
 	<% end %>
 	</tr>

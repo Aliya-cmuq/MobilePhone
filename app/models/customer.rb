@@ -34,6 +34,9 @@ class Customer < ActiveRecord::Base
 	(customer && customer.password_salt == cookie_salt)? customer : nil
   end
   
+  def proper_name
+ 	firstName + " " + lastName
+  end
   
   private
   
