@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @orders }
     end
-         @orders = current_user.orders
+  #       @orders = current_user.orders
   end
 
   # GET /orders/1

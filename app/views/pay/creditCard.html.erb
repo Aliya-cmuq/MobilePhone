@@ -1,0 +1,9 @@
+<title><%= title %></title>
+
+<h1>Payment Receipt: Credit Card</h1>
+<p>Receipt Number: <%= 1000 + rand(100) %></p>
+<p>Date: <%= Time.now.strftime("%m/%d/%Y") %></p>
+<% if signed_in? %>
+<p>To: <%= @current_customer.proper_name %></p>
+<% end %>	
+

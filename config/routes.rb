@@ -1,4 +1,12 @@
 MobilePhone::Application.routes.draw do
+  get "pay/paymentType"
+
+  get "pay/creditCard"
+
+  get "pay/cash"
+
+  get "payment/PaymentType"
+
   get "cart/new"
 
 
