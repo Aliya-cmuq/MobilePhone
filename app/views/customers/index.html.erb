@@ -2,8 +2,7 @@
 
 <table>
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
+    <th>Full Name</th>
     <th>Email</th>
     <th>Phone</th>
     <th>Address</th>
@@ -15,8 +14,7 @@
 <% @customers.each do |customer| %>
   <tr>
 
-    <td><%= customer.firstName %></td>
-    <td><%= customer.lastName %></td>
+    <td><%= customer.proper_name %></td>
     <td><%= customer.email %></td>
     <td><%= customer.phone %></td>
     <td><%= customer.address %></td>

@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @orders }
     end
+         @orders = current_user.orders
   end
 
   # GET /orders/1
@@ -26,6 +27,8 @@ class OrdersController < ApplicationController
   def new
     @phone = Phone.find(params[:id])
     session[:phone] = @phone.id
+    @customer = Phone.find(params[:id])
+    session[:customer] = @customer.id
     @order = Order.new
     respond_to do |format| 
 
@@ -42,11 +45,17 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    
+    @order = Order.new(params[:order])
+    @order.customer_id = current_customer.id
+    
     @phone = Phone.find(session[:phone])
     @order = @phone.orders.new(params[:order])
+#    @customer = Customer.find(session[:customer])
+#    @order = @customer.orders.new(params[:order])
     respond_to do |format|
       if @order.save
-        OrderMailer.new_order_msg(@order).deliver
+#        OrderMailer.new_order_msg(@order).deliver
         flash[:notice] = "#{@order.id} has been added as a new order and you will be notified by email."
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
