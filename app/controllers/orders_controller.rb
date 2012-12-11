@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
     @customer = Phone.find(params[:id])
     session[:customer] = @customer.id
     @order = Order.new
+
     respond_to do |format| 
 
       format.html # new.html.erb
@@ -48,9 +49,9 @@ class OrdersController < ApplicationController
     
     @order = Order.new(params[:order])
     @order.customer_id = current_customer.id
-    
     @phone = Phone.find(session[:phone])
     @order = @phone.orders.new(params[:order])
+    
 #    @customer = Customer.find(session[:customer])
 #    @order = @customer.orders.new(params[:order])
 #    respond_to do |format|

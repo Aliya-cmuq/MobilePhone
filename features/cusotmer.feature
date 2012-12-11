@@ -78,8 +78,14 @@ Scenario: creating a phone
 	And I click on "Create Phone"
 	Then I should be seeing "new phone was successfully created."
 
+	Scenario: cash payment
+	        Given I am in the orders page
+	        When I am following the "Pay" link for "iphone"
+	        And I click on the choice "Cash"
+	        Then I am seeing "Payment Receipt: Credit Card"
 
-
-
-
-	
+	Scenario: credit-card payment
+	        Given I am in the orders page
+	        When I am following the "Pay" link for "iphone"
+	        And I click on the choice "Credit Card"
+	        Then I am seeing "Payment Receipt: Cash"
