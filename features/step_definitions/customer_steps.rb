@@ -1,8 +1,8 @@
 require 'factory_girl'
 Given /^I created a customer, phone and order$/ do
   @asma = FactoryGirl.create(:customer, :firstName => "Asma", :lastName => "Al-kubaisi")
-  @iphone = FactoryGirl.create(:phone, :brand => "iphone", :name => "iphone")
-  @order = FactoryGirl.create(:order) # express the regexp above with the code you wish you had
+  @iphone = FactoryGirl.create(:phone, :brand => "Apple", :name => "iphone")
+  @order = FactoryGirl.create(:order, :phone => @iphone)
 end
 
 Given /^I am in the home page$/ do
@@ -115,3 +115,23 @@ When /^I enter "(.*?)" in 'Description'$/ do |arg1|
   fill_in 'Description', :with => arg1 # express the regexp above with the code you wish you had
 end
 
+
+Given /^I am in the orders page$/ do
+  visit orders_path
+end
+
+When /^I am following the "(.*?)" link for "(.*?)"$/ do |arg1, arg2|
+#  within do
+#      within('tr', :text => arg2) do
+#       find('th', :text => arg1).click
+#      end
+#    end
+end
+
+Then /^I am seeing "(.*?)"$/ do |arg1|
+#  page.should have_content arg1
+end
+
+When /^I click on the choice "(.*?)"$/ do |arg1|
+#  click_button arg1
+end

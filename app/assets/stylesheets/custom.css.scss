@@ -110,11 +110,12 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
+
   a {
     color: $gray;
     &:hover { 
-      color: $grayDarker;
-    }
+    color: white;
+    text-decoration: none;    }
   }  
   small { 
     float: left; 
@@ -129,3 +130,9 @@ footer {
   }
 }
 
+button{
+
+}
+#payment {
+text-align: center;
+}
