@@ -23,11 +23,8 @@
     <td><%= phone.description %></td>
     <td><%= phone.price %></td>
     <td><%= phone.quantityInStock %></td>
-<<<<<<< HEAD
    
-=======
     <td><%= link_to 'Buy', sign_up_path %></td>
->>>>>>> eecb0837ba33ed94de0490892bf87e3cd4055469
     <% if signed_in? %>
 		<% if @current_customer.email == "aliya@aliya.com"%>
 	    <td><%= link_to 'Show', phone %></td>
@@ -39,7 +36,7 @@
     <td><%= link_to 'Show', phone %></td>
 		<% end %>
 	<% else %>
-	<td><%= link_to 'Buy', :controller => :orders, :action => sign_up_path %></td>
+	<td><%= link_to 'Buy', log_in_path %></td>
     <td><%= link_to 'Show', phone %></td>
 	<% end %>
 	</tr>
