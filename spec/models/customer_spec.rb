@@ -34,7 +34,71 @@ describe Customer do
         		it {should_not allow_value("aliya hashim@fred.com").for(:email)}
         		it {should_not allow_value("fred.fred.com").for(:email)}
       		end
+			
+			it "should reject duplicate email addresses" do
+				Customer.create!(@attr)
+				customer_with_duplicate_email = Customer.new(@attr)
+				customer_with_duplicate_email.should_not be_valid
+			end
+			
+			it "should reject duplicate email addresses identical up to case" do
+				upcased_email = @attr[:email].upcase
+				Customer.create!(@attr.merge(:email => upcased_email))
+				customer_with_duplicate_email = Customer.new(@attr)
+				customer_with_duplicate_email.should_not be_valid
+			end		
+			
+			
     	end
+		
+		describe "Password validations" do
+			it "should require a password" do
+				Customer.new(@attr.merge(:password => "", :password_confirmation => "")).should_not be_valid
+			end
+		
+			it "should require a matching password confirmation" do
+				Customer.new(@attr.merge(:password_confirmation => "invalid")).should_not be_valid
+			end
+			
+			it "should reject short passwords" do
+				short = "a" * 5
+				short_hash = @attr.merge(:password => short, :password_confirmation => short)
+				Customer.new(short_hash).should_not be_valid
+			end
+			
+			it "should reject long passwords" do
+				long = "a" * 41
+				long_hash = @attr.merge(:password => long, :password_confirmation => long)
+				Customer.new(long_hash).should_not be_valid
+			end
+		end
+		
+		describe "Password Encryption" do
+			before(:each) do
+				@customer = Customer.create!(@attr)
+			end
+			
+			it "should have an encrypted password attribute" do
+				@customer.should respond_to(:encrypted_password)
+			end
+			
+			it "should set the encrypted password" do
+				@customer.encrypted_password.should_not be_blank
+			end
+		end
+		
+		describe "Authenticate method" do
+			it "should return nil on email/password mismatch" do
+				wrong_password_customer = Customer.authenticate(@attr[:email], "wrongpass")
+				wrong_password_customer.should be_nil
+			end
+			
+			it "should return nil for an email address with no user" do
+				nonexistent_customer = Customer.authenticate(@attr[:email], attr[:password])
+				nonexistent_customer.should == @customer
+			end
+		end
+		
     	describe "Phone validation" do
       		describe "Validate good phone number" do
         		it {should allow_value("97497449744").for(:phone)}
