@@ -23,7 +23,7 @@
     <td><%= phone.description %></td>
     <td><%= phone.price %></td>
     <td><%= phone.quantityInStock %></td>
-    <td><%= link_to 'Buy', :controller => :orders, :action => :new, :id => phone.id %></td>
+    <td><%= link_to 'Buy', sign_up_path %></td>
     <% if signed_in? %>
 		<td><%= link_to 'Buy', :controller => :orders, :action => :new, :id => phone.id %></td>
     <td><%= link_to 'Show', phone %></td>
