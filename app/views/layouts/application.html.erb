@@ -13,46 +13,24 @@
 
     <header class="navbar navbar-fixed-top">	
       <nav class="navbar-inner">
-        <div class="container">	
-				<% if signed_in? %>
-				Logged in as <%= @current_customer.email %>
-				<%= link_to "Log out", log_out_path %>
-			<% else %>
-				<%= link_to "Sign up", sign_up_path %> or
-				<%= link_to "Log in", log_in_path %>
-			<% end %>	
-			<%= render 'partials/header' %>
-        </div>
+        <div class="container">
+
+       </div>
       </nav>
     </header>
     <div id="main" role="main">
       <div class="container">
-<<<<<<< HEAD
         <div class="content">
            <div class="row">
             <div class="span12">
-              <%= yield %>
             </div>
           </div>
-          <footer>
-			<%= render 'partials/footer' %>
-          </footer>
+
         </div>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
-=======
-	<a class="btn btn-navbar">
-		<% if signed_in? %>
-		Logged in as <%= @current_customer.email %>
-		<%= link_to "Log out", log_out_path %>
-		<%= link_to "Order Log", orders_path %>
-		<%= link_to "Purchase Phones", phones_path %>
-	<% else %>
-		<%= link_to "Sign up", sign_up_path %> or
-		<%= link_to "Log in", log_in_path %>
-		<%= link_to "Order Log", orders_path %>
-		<%= link_to "Purchase Phones", phones_path %>
-	<% end %>	
+
+    
 			<div class="navbar navbar-fixed-top">
 			  <div class="navbar-inner">
 			    <div class="container">
@@ -64,9 +42,16 @@
 					<% if signed_in? %>
 						<li><%= link_to "Log out", log_out_path %></li>
 				        <li><a href="/log_out">Log Out</a></li>
+				        <li><a href="/customers">Customers</a></li>
+				        <li><a href="/orders">Your Orders</a></li>
+				        <li><a href="/phones">Purchase Phones</a></li>
+				
 					<% else %>
 			        	<li><%= link_to "Sign up", sign_up_path %></li>
 			        	<li><%= link_to "Log in", log_in_path %></li>
+				        <li><a href="/log_in">Customers</a></li>
+				        <li><a href="/log_in">Your Orders</a></li>
+				        <li><a href="/phones">Purchase Phones</a></li>
 					<% end %>
 			      </ul>
 			    </div>
@@ -88,12 +73,15 @@
   <div class="row">
     <div class="span9"><%= yield %></div>
     <div class="span3">
-      <h2>About Us</h2>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <h2>Our Goal</h2>
+We believe in value, and we want you to be happy, happy because you've had a great choice of mobile products to choose from, a brilliant deal, along with a friendly and helpful service.
     </div>
   </div>
 </div>
+<footer>
+	<%= render 'layouts/footer' %>    
 
->>>>>>> eecb0837ba33ed94de0490892bf87e3cd4055469
+</footer>
+
 </body>
 </html>
