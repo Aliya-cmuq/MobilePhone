@@ -43,10 +43,14 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @phone = Phone.find(session[:phone])
-    @order = @phone.orders.new(params[:order])
-    respond_to do |format|
+	if @phone.quantityInStock > 0 
+	 @order = @phone.orders.new(params[:order])
+	 # @phone.decrease(@phone.id, @order.quantity) 
+     respond_to do |format|
       if @order.save
-        OrderMailer.new_order_msg(@order).deliver
+	    @phone = @phone.decrease(@phone.id, @order.quantity)
+	   
+        #OrderMailer.new_order_msg(@order.customer).deliver
         flash[:notice] = "#{@order.id} has been added as a new order and you will be notified by email."
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
@@ -55,6 +59,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+	end
   end
 
   # PUT /orders/1
