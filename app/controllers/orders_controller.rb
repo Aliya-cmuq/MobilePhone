@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    @title = "Orders"
     @orders = Order.all
 
     respond_to do |format|
@@ -25,6 +26,8 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
+    @title = "New Orders"
+    
     @phone = Phone.find(params[:id])
     session[:phone] = @phone.id
     @customer = Phone.find(params[:id])
@@ -46,6 +49,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    @title = "New Orders"
     
     @order = Order.new(params[:order])
     @order.customer_id = current_customer.id

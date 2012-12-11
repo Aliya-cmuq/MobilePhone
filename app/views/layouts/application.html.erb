@@ -10,27 +10,17 @@
     <%= render 'layouts/shim' %>    
 </head>
 <body>
+	
 
-    <header class="navbar navbar-fixed-top">	
-      <nav class="navbar-inner">
-        <div class="container">
 
-       </div>
-      </nav>
-    </header>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-            </div>
-          </div>
+		<a class="btn btn-navbar">
 
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+			<% if signed_in? %>
+				Logged in as <%= @current_customer.email %>
+			<% end %>
 
-    
+
+		    <header class="navbar navbar-fixed-top">				    
 			<div class="navbar navbar-fixed-top">
 			  <div class="navbar-inner">
 			    <div class="container">
@@ -57,12 +47,11 @@
 			    </div>
 			  </div>
 			</div>
+			</header>
+		    
 			
-			
-			
-</div>
-</div>
-</div>
+
+
 
 <% flash.each do |name, msg| %>
 	<% content_tag :div, msg, :id => "flash_#{name}" %>
@@ -71,9 +60,9 @@
 
 <div class="container">
   <div class="row">
-    <div class="span9"><%= yield %></div>
-    <div class="span3">
-      <h2>Our Goal</h2>
+    <div class="span10"><%= yield %></div>
+    <div class="span2">
+      <h2 id="Goal">Our Goal</h2>
 We believe in value, and we want you to be happy, happy because you've had a great choice of mobile products to choose from, a brilliant deal, along with a friendly and helpful service.
     </div>
   </div>
