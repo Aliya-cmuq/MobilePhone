@@ -1,3 +1,5 @@
+<title><%= title%></title>
+
 <h1>Listing phones</h1>
 
 <table>
@@ -8,7 +10,6 @@
     <th>Name</th>
     <th>Description</th>
     <th>Price</th>
-    <th>Quantityinstock</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,27 +23,28 @@
     <td><%= phone.name %></td>
     <td><%= phone.description %></td>
     <td><%= phone.price %></td>
-    <td><%= phone.quantityInStock %></td>
    
-    <td><%= link_to 'Buy', sign_up_path %></td>
     <% if signed_in? %>
 		<% if @current_customer.email == "aliya@aliya.com"%>
-	    <td><%= link_to 'Show', phone %></td>
-	 <td><%= link_to 'Edit', edit_phone_path(phone) %></td>
-	    <td><%= link_to 'Destroy', phone, confirm: 'Are you sure?', method: :delete %></td>
-	
-			<% else %>
-		<td><%= link_to 'Buy', :controller => :orders, :action => :new, :id => phone.id %></td>
-    <td><%= link_to 'Show', phone %></td>
+	    	<td><%= link_to 'Show', phone %></td>
+	 		<td><%= link_to 'Edit', edit_phone_path(phone) %></td>
+	    	<td><%= link_to 'Destroy', phone, confirm: 'Are you sure?', method: :delete %></td>
+		<% else %>
+			<td><%= link_to 'Buy', :controller => :orders, :action => :new, :id => phone.id %></td>
+    		<td><%= link_to 'Show', phone %></td>
 		<% end %>
 	<% else %>
-	<td><%= link_to 'Buy', log_in_path %></td>
-    <td><%= link_to 'Show', phone %></td>
+		<td><%= link_to 'Buy', log_in_path %></td>
+    	<td><%= link_to 'Show', phone %></td>
 	<% end %>
 	</tr>
 <% end %>
 </table>
 
 <br />
-
+<% if signed_in? %>
+	<% if @current_customer.email == "aliya@aliya.com"%>
 <%= link_to 'New Phone', new_phone_path %>
+<% end %>
+<% end %>
+

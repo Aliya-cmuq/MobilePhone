@@ -2,6 +2,7 @@ class PhonesController < ApplicationController
   # GET /phones
   # GET /phones.json
   def index
+    @title = "Phones"
     @phones = Phone.all
 
     respond_to do |format|
@@ -24,6 +25,7 @@ class PhonesController < ApplicationController
   # GET /phones/new
   # GET /phones/new.json
   def new
+    @title = "New Phone"
     @phone = Phone.new
 
     respond_to do |format|
@@ -40,6 +42,8 @@ class PhonesController < ApplicationController
   # POST /phones
   # POST /phones.json
   def create
+    @title = "New Phone"
+    
     @phone = Phone.new(params[:phone])
 
     respond_to do |format|
@@ -56,6 +60,7 @@ class PhonesController < ApplicationController
   # PUT /phones/1
   # PUT /phones/1.json
   def update
+    
     @phone = Phone.find(params[:id])
 
     respond_to do |format|
